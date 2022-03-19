@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CleemyApplication\CleemyApplication.csproj" />
     <ProjectReference Include="..\CleemyCommons\CleemyCommons.csproj" />
+    <ProjectReference Include="..\CleemyInfrastructure\CleemyInfrastructure.csproj" />
   </ItemGroup>
 
 

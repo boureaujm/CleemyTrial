@@ -1,11 +1,13 @@
-﻿using CleemyCommons.Model;
+﻿using CleemyCommons.Interfaces;
+using CleemyCommons.Model;
+using CleemyCommons.Tools;
 using CleemyInfrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 
 namespace CleemyApplication.Services
 {
-    public class PaymentServices
+    public class PaymentServices : IPaymentServices
     {
         private readonly IPaymentRepository _paymentRepository;
 
@@ -15,12 +17,12 @@ namespace CleemyApplication.Services
 
         }
 
-        public IEnumerable<Payment> GetPayments(int userId) {
-            
-            if (userId < 1)
-                throw new ArgumentException();
+        public IEnumerable<Payment> GetPayments(int userId)
+        {
+            Guard.IsNotNull(userId, "Must be not null");
 
             var payments = _paymentRepository.GetPayments(userId);
+
             return payments;
         }
     }

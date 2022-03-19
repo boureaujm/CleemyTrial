@@ -5,16 +5,20 @@ using System.Collections.Generic;
 
 namespace Cleemy.Model.Adapter
 {
-    public class PayementAdapter : IEnumerableAdapter<Payment, PaymentDto>
+    public class PaymentToDtoAdapter : IEnumerableAdapter<Payment, PaymentDto>
     {
         public PaymentDto Convert(Payment source)
         {
             return new PaymentDto
             {
-                UserId = source.UserId,
+                PaymentUserFirstName = source.User.FirstName,
+                PaymentUserLastName = source.User.LastName,
+
                 Amount = source.Amount,
                 Comment = source.Comment,
-                Currency = source.Currency,
+                
+                Currency = source.Currency.Label,
+
                 Date = source.Date,
                 PaymentNature = source.PaymentNature
             };

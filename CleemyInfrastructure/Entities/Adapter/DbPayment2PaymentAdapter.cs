@@ -4,16 +4,22 @@ using System.Collections.Generic;
 
 namespace CleemyInfrastructure.entities.Adapter
 {
-    public class DbPaymentAdapter : IEnumerableAdapter<DbPayment, Payment>
+    public class DbPayment2PaymentAdapter : IEnumerableAdapter<DbPayment, Payment>
     {
         public Payment Convert(DbPayment source)
         {
             return new Payment
             {
-                UserId = source.UserId,
+                User = new User {
+                    FirstName = source.User.FirstName,
+                    LastName = source.User.LastName,
+                },
                 Amount = source.Amount,
                 Comment = source.Comment,
-                Currency = source.Currency,
+                Currency = new Currency {
+                    Code = source.Currency.Code,
+                    Label = source.Currency.Label
+                },
                 Date = source.Date,
                 PaymentNature = source.PaymentNature
             };

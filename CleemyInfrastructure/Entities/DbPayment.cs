@@ -1,22 +1,30 @@
 ﻿using CleemyCommons.Types;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CleemyInfrastructure.entities
 {
+    [Table("Payments")]
     public class DbPayment
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public int UserId { get; set; }
+        public DbUser User { get; set; }
+
+        [Required]
         public DateTime Date { get; set; }
 
+        [Required]
         public PaymentNatureEnum PaymentNature { get; set; }
 
+        [Required]
         public double Amount { get; set; }
 
-        public CurrencyEnum Currency { get; set; }
+        [Required]
+        public DbCurrency Currency { get; set; }
 
         public string Comment { get; set; }
 

@@ -1,10 +1,12 @@
+using Cleemy.Configuration;
+using CleemyApplication;
+using CleemyInfrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
 
 namespace Cleemy
 {
@@ -31,6 +33,10 @@ namespace Cleemy
                     Version = "v1"
                 });
             });
+
+            services.RegisterServices();
+            services.RegisterApplication();
+            services.RegisterInfrastructure(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

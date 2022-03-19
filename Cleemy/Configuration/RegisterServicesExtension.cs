@@ -9,7 +9,7 @@ namespace Cleemy.Configuration
     public static class RegisterServicesExtension
     {
         public static void RegisterServices(this IServiceCollection services) {
-            services.AddScoped<IEnumerableAdapter<Payment, PaymentDto>, PayementAdapter>();
+            services.AddScoped<IEnumerableAdapter<Payment, PaymentDto>, PaymentToDtoAdapter>();
         }
     }
 }
