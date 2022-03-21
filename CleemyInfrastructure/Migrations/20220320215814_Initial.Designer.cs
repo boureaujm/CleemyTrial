@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CleemyInfrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220319005622_Initial")]
+    [Migration("20220320215814_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

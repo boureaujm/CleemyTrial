@@ -11,9 +11,12 @@ using System.Threading.Tasks;
 
 namespace Cleemy.Controllers
 {
+    /// <summary>
+    /// Payments controller
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
-    public class PaymentsController : ControllerBase
+    public class PaymentsController : CleemyBaseController
     {
         private readonly ILogger<PaymentsController> _logger;
         private readonly IPaymentServices _paymentServices;
@@ -29,13 +32,13 @@ namespace Cleemy.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PaymentDto> Get(int userId)
+        public async Task<ActionResult> GetAsync(int userId)
         {
-            var payments = _paymentServices.GetPayments(userId).ToList();
+            var payments = _paymentServices.GetByUserId(userId);
 
-            var paymentsDto = _adapter.Convert(payments);
+            var paymentsDto = _adapter.Convert(payments.ToList());
 
-            return paymentsDto;
+            return Ok<IEnumerable<PaymentDto>>(paymentsDto);
         }
     }
 }

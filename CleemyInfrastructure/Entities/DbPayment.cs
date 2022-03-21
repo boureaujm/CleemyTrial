@@ -12,7 +12,7 @@ namespace CleemyInfrastructure.entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DbUser User { get; set; }
+        public virtual DbUser User { get; set; }
 
         [Required]
         public DateTime Date { get; set; }
@@ -24,7 +24,7 @@ namespace CleemyInfrastructure.entities
         public double Amount { get; set; }
 
         [Required]
-        public DbCurrency Currency { get; set; }
+        public virtual DbCurrency Currency { get; set; }
 
         public string Comment { get; set; }
 
