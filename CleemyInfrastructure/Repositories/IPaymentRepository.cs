@@ -7,7 +7,8 @@ namespace CleemyInfrastructure.Repositories
 {
     public interface IPaymentRepository
     {
-        Task<Payment> CreateAsync(Payment payment);
-        IEnumerable<Payment> GetByUser(int userId);
+        bool CheckIfExists(Payment newPayment);
+        Task<DbPayment> CreateAsync(Payment payment);
+        IEnumerable<DbPayment> GetByUser(int userId, SortWrapper sortWrapper);
     }
 }

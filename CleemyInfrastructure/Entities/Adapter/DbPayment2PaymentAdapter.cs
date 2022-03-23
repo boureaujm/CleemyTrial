@@ -10,15 +10,16 @@ namespace CleemyInfrastructure.entities.Adapter
         {
             return new Payment
             {
+                Id = source.Id,
                 User = new User {
-                    FirstName = source.User.FirstName,
-                    LastName = source.User.LastName,
+                    FirstName = source.User?.FirstName,
+                    LastName = source.User?.LastName,
                 },
                 Amount = source.Amount,
                 Comment = source.Comment,
                 Currency = new Currency {
-                    Code = source.Currency.Code,
-                    Label = source.Currency.Label
+                    Code = source.Currency?.Code,
+                    Label = source.Currency?.Label
                 },
                 Date = source.Date,
                 PaymentNature = source.PaymentNature

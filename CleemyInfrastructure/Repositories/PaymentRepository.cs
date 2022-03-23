@@ -1,6 +1,7 @@
 ﻿using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
 using CleemyCommons.Tools;
+using CleemyCommons.Types;
 using CleemyInfrastructure.entities;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,25 +13,22 @@ namespace CleemyInfrastructure.Repositories
 {
     public class PaymentRepository : IPaymentRepository
     {
-        private readonly IEnumerableAdapter<DbPayment, Payment> _dbPaymentToPaymentAdapter;
         private readonly IEnumerableAdapter<Payment, DbPayment> _paymentToDbPaymentAdapter;
         private ApplicationContext _context;
         private readonly ILogger<PaymentRepository> _logger;
 
         public PaymentRepository(
-            IEnumerableAdapter<DbPayment, Payment> dbPaymentToPaymentAdapter,
             IEnumerableAdapter<Payment, DbPayment> paymentToDbPaymentAdapter,
             ApplicationContext context,
             ILogger<PaymentRepository> logger
             )
         {
-            _dbPaymentToPaymentAdapter = dbPaymentToPaymentAdapter;
             _paymentToDbPaymentAdapter = paymentToDbPaymentAdapter;
             _context = context;
             _logger = logger;
         }
 
-        public IEnumerable<Payment> GetByUser(int userId)
+        public IEnumerable<DbPayment> GetByUser(int userId, SortWrapper sort)
         {
 
             if (userId < 1)
@@ -38,9 +36,23 @@ namespace CleemyInfrastructure.Repositories
 
             try
             {
-                var dbPayments = _context.Payments.Where(p => p.User.Id == userId).ToList();
-                var payments = _dbPaymentToPaymentAdapter.Convert(dbPayments);
-                return payments;
+                var dbPayments = _context.Payments.Where(p => p.User.Id == userId);
+
+                var direction = sort.Direction;
+
+                switch (sort.Field)
+                {
+                    case PaymentConstants.CST_AMOUNT:
+                        dbPayments = direction == CommonsConstants.CST_ASCENDING ? dbPayments.OrderBy(p => p.Amount) : dbPayments.OrderByDescending(p => p.Amount);
+                        break;
+                    case PaymentConstants.CST_DATE:
+                        dbPayments = direction == CommonsConstants.CST_ASCENDING ? dbPayments.OrderBy(p => p.Date) : dbPayments.OrderByDescending(p => p.Date);
+                        break;
+                    default:
+                        break;
+                }
+
+                return dbPayments.ToList();
             }
             catch (Exception err)
             {
@@ -50,7 +62,16 @@ namespace CleemyInfrastructure.Repositories
 
         }
 
-        public async Task<Payment> CreateAsync(Payment payment)
+        public bool CheckIfExists(Payment newPayment)
+        {
+            Guard.IsNotZeroNegative(newPayment, "Must be not null");
+
+            var existingPayment = _context.Payments.Any(payment => payment.Amount == newPayment.Amount && payment.Date == newPayment.Date );
+
+            return existingPayment;
+        }
+
+        public async Task<DbPayment> CreateAsync(Payment payment)
         {
             Guard.IsNotNull(payment, "payment must be not null");
 
@@ -65,8 +86,7 @@ namespace CleemyInfrastructure.Repositories
                 await _context.SaveChangesAsync();
 
                 var createdDbPayment = await _context.Payments.FindAsync(newDbPayment.Id);
-                var newPayment = _dbPaymentToPaymentAdapter.Convert(createdDbPayment);
-                return newPayment;
+                return createdDbPayment;
             }
             catch (Exception err)
             {

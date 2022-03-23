@@ -2,6 +2,7 @@
 using CleemyApplication.Services;
 using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
+using CleemyCommons.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,6 +23,8 @@ namespace Cleemy.Controllers
         private readonly IPaymentServices _paymentServices;
         private readonly IEnumerableAdapter<Payment, PaymentDto> _adapter;
 
+        const string Default_Payment_Sorter = PaymentConstants.CST_DATE + "." + CommonsConstants.CST_DESCENDING;
+
         public PaymentsController(ILogger<PaymentsController> logger,
             IPaymentServices paymentServices,
             IEnumerableAdapter<Payment, PaymentDto> adapter)
@@ -32,9 +35,15 @@ namespace Cleemy.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAsync(int userId)
+        public async Task<ActionResult> GetAsync([FromRoute]int userId, [FromQuery]string sortBy = Default_Payment_Sorter)
         {
-            var payments = _paymentServices.GetByUserId(userId);
+            var sortWrapper = new SortWrapper
+            {
+                Field = PaymentConstants.CST_AMOUNT,
+                Direction = CommonsConstants.CST_ASCENDING
+            };
+
+            var payments = _paymentServices.GetByUserId(userId, sortWrapper);
 
             var paymentsDto = _adapter.Convert(payments.ToList());
 
