@@ -1,16 +1,16 @@
-﻿using Cleemy.DTO;
+﻿using Cleemy.ActionFilters;
+using Cleemy.DTO;
 using CleemyApplication.Services;
 using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
 using CleemyCommons.Types;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cleemy.Controllers
+namespace Cleemy.Controllers.Filters
 {
     /// <summary>
     /// Payments controller
@@ -49,5 +49,17 @@ namespace Cleemy.Controllers
 
             return Ok<IEnumerable<PaymentDto>>(paymentsDto);
         }
+
+        [HttpPost]
+        [ServiceFilter(typeof(ValidateModelStateAttribute<PaymentDto>))]
+        public async Task<ActionResult> AddPaymentAsync([FromBody] PaymentDto paymentDto)
+        {
+            
+
+            return Ok<PaymentDto>(null);
+        }
+
+        
+
     }
 }

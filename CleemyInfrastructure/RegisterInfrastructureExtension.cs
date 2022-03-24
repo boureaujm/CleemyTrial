@@ -21,7 +21,14 @@ namespace CleemyInfrastructure
                 });
 
             services.AddScoped<IEnumerableAdapter<DbPayment, Payment>, DbPayment2PaymentAdapter>();
+            services.AddScoped<IEnumerableAdapter<Payment, DbPayment>, Payment2DbPaymentAdapter>();
+
+            services.AddScoped<IEnumerableAdapter<DbCurrency, Currency>, DbCurrency2CurrencyAdapter>();
+            services.AddScoped<IEnumerableAdapter<DbUser, User>, DbUser2UserAdapter>();
+
             services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ICurrencyRepository, CurrencyRepository>();
         }
     }
 }

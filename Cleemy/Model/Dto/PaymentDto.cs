@@ -10,11 +10,11 @@ namespace Cleemy.DTO
         public string PaymentUserFirstName { get; set; }
         public string PaymentUserLastName { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
-        public PaymentNatureEnum PaymentNature { get; set; }
+        public PaymentNatureEnum? PaymentNature { get; set; }
 
-        public double Amount { get; set; }
+        public double? Amount { get; set; }
 
         public string Currency { get; set; }
 
