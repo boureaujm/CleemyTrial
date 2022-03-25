@@ -20,7 +20,7 @@ namespace Cleemy.Model.Adapter
                 Currency = source.Currency.Label,
 
                 Date = source.Date,
-                PaymentNature = source.PaymentNature
+                PaymentNature = "test"
             };
         }
 

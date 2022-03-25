@@ -12,7 +12,7 @@ namespace Cleemy.DTO
 
         public DateTime? Date { get; set; }
 
-        public PaymentNatureEnum? PaymentNature { get; set; }
+        public string PaymentNature { get; set; }
 
         public double? Amount { get; set; }
 
