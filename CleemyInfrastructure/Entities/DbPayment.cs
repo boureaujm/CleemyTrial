@@ -27,6 +27,7 @@ namespace CleemyInfrastructure.entities
         public virtual DbCurrency Currency { get; set; }
 
         [Required]
+        [MaxLength(250)]
         public string Comment { get; set; }
 
     }

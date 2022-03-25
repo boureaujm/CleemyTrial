@@ -10,9 +10,11 @@ namespace CleemyInfrastructure.entities
         public int Id { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public String LastName { get; set; }
 
         [Required]
+        [MaxLength(50)]
         public String FirstName { get; set; }
 
         public string AuthorizedCurrencyCode { get; set; }
