@@ -78,6 +78,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentList.Repository", "Validation")]
         public void GetPayments_SortByAMountAsc_Ok()
         {
             Reset();
@@ -96,6 +97,8 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentList.Repository", "Validation")]
+
         public void GetPayments_SortByAMountDesc_Ok()
         {
             Reset();
@@ -114,6 +117,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentList.Repository", "Validation")]
         public void GetPayments_SortByDateAsc_Ok()
         {
             Reset();
@@ -132,6 +136,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentList.Repository", "Validation")]
         public void GetPayments_SortByDateDesc_Ok()
         {
             Reset();

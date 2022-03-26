@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Cleemy.Model.Adapter
 {
-    public class PaymentToDtoAdapter : IEnumerableAdapter<Payment, PaymentDto>
+    public class PaymentToPaymentDtoAdapter : IEnumerableAdapter<Payment, PaymentDto>
     {
         public PaymentDto Convert(Payment source)
         {
@@ -20,7 +20,7 @@ namespace Cleemy.Model.Adapter
                 Currency = source.Currency.Label,
 
                 Date = source.Date,
-                PaymentNature = "test"
+                PaymentNature = source.PaymentNature.ToString()
             };
         }
 

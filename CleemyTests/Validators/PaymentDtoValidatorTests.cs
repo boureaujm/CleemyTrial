@@ -1,30 +1,31 @@
 using Cleemy.DTO;
 using Cleemy.Model.Validator;
+using System.ComponentModel;
 using System.Linq;
 using Xunit;
 
 namespace CleemyTests
 {
-    public class PaymentValidatorTests
+    public class PaymentDtoValidatorTests
     {
         private readonly PaymentDtoValidator _validator;
 
-        public PaymentValidatorTests()
+        public PaymentDtoValidatorTests()
         {
             _validator = new PaymentDtoValidator();
         }
 
         [Fact]
-        public void GetPayments_FieldNotNull_GenerateErrors_Ok()
+        [Trait("Payment","Validation")]
+        public void PaymentDto_FieldNotNull_GenerateErrors_Ok()
         {
-            var payment = new PaymentDto
+            var payment = new CreatePaymentDto
             {
                 Amount = null,
                 Comment = null,
                 Currency = null,
                 Date = null,    
-                PaymentUserFirstName = null,
-                PaymentUserLastName = null,
+                UserId = null,
                 PaymentNature = null
             };
 
@@ -34,22 +35,20 @@ namespace CleemyTests
             Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_COMMENT_REQUIRED).Count() == 1);
             Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_CURRENCY_REQUIRED).Count() == 1);
             Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_DATE_REQUIRED).Count() == 1);
-            Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_USER_FIRSTNAME_REQUIRED).Count() == 1);
-            Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_USER_LASTNAME_REQUIRED).Count() == 1);
+            Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_USER_USER_ID_REQUIRED).Count() == 1);
             Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_NATURE_REQUIRED).Count() == 1);
         }
 
         [Fact]
-        public void GetPayments_InvalidNature_GenerateErrors_Ok()
+        [Trait("Payment", "Validation")]
+        public void PaymentDto_InvalidNature_GenerateErrors_Ok()
         {
-            var payment = new PaymentDto
+            var payment = new CreatePaymentDto
             {
                 Amount = null,
                 Comment = null,
                 Currency = null,
                 Date = null,
-                PaymentUserFirstName = null,
-                PaymentUserLastName = null,
                 PaymentNature = "test"
             };
 
@@ -59,9 +58,10 @@ namespace CleemyTests
         }
 
         [Fact]
-        public void GetPayments_PaymentNull_GenerateError_Ok()
+        [Trait("Payment", "Validation")]
+        public void PaymentDto_PaymentNull_GenerateError_Ok()
         {
-            PaymentDto payment = null;
+            CreatePaymentDto payment = null;
 
             var errors = _validator.Validate(payment);
 

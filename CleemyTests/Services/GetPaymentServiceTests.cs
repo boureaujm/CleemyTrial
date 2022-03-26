@@ -52,6 +52,7 @@ namespace CleemyTests
         [Theory()]
         [InlineData(0)]
         [InlineData(-1)]
+        [Trait("PaymentList.Service", "Validation")]
         public void GetPayments_ZeroNegativeUserId_ReturnException(int userId)
         {
             Reset();
@@ -64,6 +65,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentList.Service", "Validation")]
         public void GetPayments_NotFoundUserId_ReturnEmptyAsync()
         {
             Reset();

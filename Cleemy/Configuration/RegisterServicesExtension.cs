@@ -18,9 +18,13 @@ namespace Cleemy.Configuration
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            services.AddScoped<ValidateModelStateAttribute<PaymentDto>>();
+            services.AddScoped<ValidateModelStateAttribute<CreatePaymentDto>>();
+            services.AddScoped<ValidateModelStateAttribute<SortWrapperDto>>();
 
-            services.AddScoped<IEnumerableAdapter<Payment, PaymentDto>, PaymentToDtoAdapter>();
+            services.AddScoped<IEnumerableAdapter<CreatePaymentDto, Payment>, CreatePaymentDtoToPaymentAdapter>();
+            services.AddScoped<IEnumerableAdapter<Payment, PaymentDto>, PaymentToPaymentDtoAdapter>();
+            services.AddScoped<IAdapter<SortWrapperDto, SortWrapper>, SortWrapperDtoToSortWrapperAdapter>();
+            
 
             System.Reflection.Assembly.GetExecutingAssembly()
            .GetTypes()

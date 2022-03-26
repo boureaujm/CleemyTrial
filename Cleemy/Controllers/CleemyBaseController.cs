@@ -1,6 +1,10 @@
 ﻿using Cleemy.Model;
+using CleemyCommons.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Cleemy.Controllers
 {
@@ -45,6 +49,18 @@ namespace Cleemy.Controllers
         public BadRequestObjectResult BadRequest<T>(T data)
         {
             ApiResponse<T> apiResponse = CreateApiResponse(data, succeed: false);
+            return new BadRequestObjectResult(apiResponse);
+        }
+
+        public BadRequestObjectResult BadRequest<E>(Exception ex) 
+        {
+            var errors = new List<ErrorItemDto> { new ErrorItemDto { Reason = ex.Message } };
+
+            var errorsDto = new ErrorsDto
+            {
+                Errors = errors
+            };
+            ApiResponse<ErrorsDto> apiResponse = CreateApiResponse(errorsDto, succeed: false);
             return new BadRequestObjectResult(apiResponse);
         }
 

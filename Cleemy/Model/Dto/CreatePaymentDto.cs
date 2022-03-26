@@ -1,12 +1,11 @@
-﻿using System;
+﻿using CleemyCommons.Types;
+using System;
 
 namespace Cleemy.DTO
 {
-    public class PaymentDto
+    public class CreatePaymentDto
     {        
-        public string PaymentUserLastName { get; set; }
-
-        public string PaymentUserFirstName { get; set; }
+        public int? UserId { get; set; }
 
         public DateTime? Date { get; set; }
 

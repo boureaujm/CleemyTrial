@@ -40,6 +40,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayments_Null_ReturnExceptionAsync()
         {
 
@@ -50,6 +51,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_PaymentValid_ReturnNewPayment()
         {
 
@@ -95,6 +97,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_InvalidUser_ThrowException()
         {
 
@@ -136,6 +139,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_InvalidCurrency_ThrowException()
         {
             var user = new User
@@ -177,6 +181,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_IncoherentCurrency_ThrowException()
         {
             var user = new User
@@ -219,6 +224,7 @@ namespace CleemyTests
         }
 
         [Fact]
+        [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_DuplicatePayment_ThrowException()
         {
             var user = new User
