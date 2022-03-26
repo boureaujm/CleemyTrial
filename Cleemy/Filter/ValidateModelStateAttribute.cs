@@ -22,6 +22,9 @@ namespace Cleemy.ActionFilters
 
             var dto = (T)param.Value;
 
+            if (dto is null)
+                return;
+
             var errors = _validator.Validate(dto);
 
             var response = new ApiResponse<ErrorsDto>
