@@ -8,12 +8,16 @@ namespace CleemyInfrastructure.entities.Adapter
     {
         public User Convert(DbUser source)
         {
+            if (source == null)
+                return null;
+
             return new User
             {
                 FirstName = source.FirstName,
                 LastName = source.LastName,
                 Id = source.Id,
-                AuthorizedCurrency = new Currency { 
+                AuthorizedCurrency = new Currency
+                {
                     Code = source.AuthorizedCurrency.Code,
                     Label = source.AuthorizedCurrency.Label
                 }

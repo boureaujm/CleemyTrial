@@ -8,6 +8,9 @@ namespace CleemyInfrastructure.entities.Adapter
     {
         public Currency Convert(DbCurrency source)
         {
+            if (source == null)
+                return null;
+
             return new Currency
             {
                 Code = source.Code,

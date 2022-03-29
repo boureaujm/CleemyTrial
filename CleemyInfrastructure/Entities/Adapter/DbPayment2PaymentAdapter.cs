@@ -8,16 +8,22 @@ namespace CleemyInfrastructure.entities.Adapter
     {
         public Payment Convert(DbPayment source)
         {
+            if (source == null)
+                return null;
+
             return new Payment
             {
                 Id = source.Id,
-                User = new User {
+                User = new User
+                {
+                    Id = source.User.Id,
                     FirstName = source.User?.FirstName,
                     LastName = source.User?.LastName,
                 },
                 Amount = source.Amount,
                 Comment = source.Comment,
-                Currency = new Currency {
+                Currency = new Currency
+                {
                     Code = source.Currency?.Code,
                     Label = source.Currency?.Label
                 },

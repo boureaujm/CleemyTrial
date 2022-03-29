@@ -11,18 +11,22 @@ namespace Cleemy.Model.Adapter
     {
         public Payment Convert(CreatePaymentDto source)
         {
+            if (source == null)
+                return null;
+
             var paymentNature = Enum.TryParse<PaymentNatureEnum>(source.PaymentNature, out var nature);
 
             return new Payment
             {
-                User = new User { 
+                User = new User
+                {
                     Id = source.UserId.Value
                 },
 
                 Amount = source.Amount.Value,
                 Comment = source.Comment,
 
-                Currency = new Currency { Code = source.Currency } ,
+                Currency = new Currency { Code = source.Currency },
 
                 Date = source.Date.Value,
                 PaymentNature = nature

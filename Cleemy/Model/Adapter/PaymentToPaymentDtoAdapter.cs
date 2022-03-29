@@ -9,14 +9,23 @@ namespace Cleemy.Model.Adapter
     {
         public PaymentDto Convert(Payment source)
         {
+            if (source == null)
+                return null;
+
             return new PaymentDto
             {
-                PaymentUserFirstName = source.User.FirstName,
-                PaymentUserLastName = source.User.LastName,
+                Id = source.Id,
+                User = new UserDto
+                {
+                    Id = source.User.Id,
+                    FirstName = source.User.FirstName,
+                    LastName = source.User.LastName,
+                    AuthorizedCurrency = source.Currency.Code
+                },
 
                 Amount = source.Amount,
                 Comment = source.Comment,
-                
+
                 Currency = source.Currency.Label,
 
                 Date = source.Date,
