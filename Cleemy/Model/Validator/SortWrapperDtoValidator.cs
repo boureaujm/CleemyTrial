@@ -9,7 +9,7 @@ namespace Cleemy.Model.Validator
     public class SortWrapperDtoValidator : IValidator<SortWrapperDto>
     {
         private const string CST_SORT = "Sort";
-        
+
         public const string CST_MUST_BE_NOT_NULL = "Must be not null";
 
         public const string CST_SORT_FIELD_REQUIRED = "Field is required";
@@ -21,7 +21,8 @@ namespace Cleemy.Model.Validator
         {
             var errors = new List<ErrorItemDto>();
 
-            if (sortWrapperDto is null) {
+            if (sortWrapperDto is null)
+            {
                 errors.Add(new ErrorItemDto
                 {
                     Scope = CST_SORT,

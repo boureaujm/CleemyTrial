@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CleemyCommons.Model
+﻿namespace CleemyCommons.Model
 {
     public class Error
     {

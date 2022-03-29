@@ -1,10 +1,9 @@
-﻿using CleemyCommons.Types;
-using System;
+﻿using System;
 
 namespace Cleemy.DTO
 {
     public class CreatePaymentDto
-    {        
+    {
         public int? UserId { get; set; }
 
         public DateTime? Date { get; set; }
@@ -16,6 +15,5 @@ namespace Cleemy.DTO
         public string Currency { get; set; }
 
         public string Comment { get; set; }
-
     }
 }

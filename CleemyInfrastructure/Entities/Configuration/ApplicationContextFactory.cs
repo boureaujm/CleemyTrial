@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.Extensions.Configuration;
 
 namespace CleemyInfrastructure.Entities.Configuration
 {
     public class ApplicationContextFactory : IDesignTimeDbContextFactory<ApplicationContext>
     {
-
         public ApplicationContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();

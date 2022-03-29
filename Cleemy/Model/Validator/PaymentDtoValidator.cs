@@ -24,11 +24,11 @@ namespace Cleemy.Model.Validator
         public const string CST_PAYEMENT_DATE_NOT_IN_FUTURE = "Date can't be in future";
         public const string CST_PAYEMENT_DATE_NOT_IN_PAST_MORE_THAN_3MONTHS = "Date can't be more than 3 month in the past";
 
-        public IEnumerable<ErrorItemDto> Validate(CreatePaymentDto paymentDto)
+        public IEnumerable<ErrorItemDto> Validate(CreatePaymentDto createPaymentDto)
         {
             var errors = new List<ErrorItemDto>();
 
-            if (paymentDto is null)
+            if (createPaymentDto is null)
             {
                 errors.Add(new ErrorItemDto
                 {
@@ -38,28 +38,29 @@ namespace Cleemy.Model.Validator
             }
             else
             {
-                if (paymentDto.UserId is null)
+                if (createPaymentDto.UserId is null)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_USER,
                         Reason = CST_USER_USER_ID_REQUIRED
                     });
 
-                if (paymentDto.Date is null)
+                if (createPaymentDto.Date is null)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_DATE_REQUIRED
                     });
 
-                if (paymentDto.PaymentNature is null)
+                if (createPaymentDto.PaymentNature is null)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_NATURE_REQUIRED
                     });
-                else {
-                    if (!Enum.GetNames(typeof(PaymentNatureEnum)).ToList().Contains(paymentDto.PaymentNature))
+                else
+                {
+                    if (!Enum.GetNames(typeof(PaymentNatureEnum)).ToList().Contains(createPaymentDto.PaymentNature))
                     {
                         errors.Add(new ErrorItemDto
                         {
@@ -69,35 +70,37 @@ namespace Cleemy.Model.Validator
                     }
                 }
 
-                if (paymentDto.Amount is null)
-                        errors.Add(new ErrorItemDto
-                        {
-                            Scope = Constants.CST_PAYMENT,
-                            Reason = CST_PAYEMENT_AMOUNT_REQUIRED
-                        });
+                if (createPaymentDto.Amount is null)
+                {
+                    errors.Add(new ErrorItemDto
+                    {
+                        Scope = Constants.CST_PAYMENT,
+                        Reason = CST_PAYEMENT_AMOUNT_REQUIRED
+                    });
+                }
 
-                if (paymentDto.Currency is null)
+                if (createPaymentDto.Currency is null)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_CURRENCY_REQUIRED
                     });
 
-                if (paymentDto.Comment is null)
+                if (createPaymentDto.Comment is null)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_COMMENT_REQUIRED
                     });
 
-                if (paymentDto.Date.HasValue && paymentDto.Date.Value.Date > DateTime.Now.Date)
+                if (createPaymentDto.Date.HasValue && createPaymentDto.Date.Value.Date > DateTime.Now.Date)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_DATE_NOT_IN_FUTURE
                     });
 
-                if (paymentDto.Date.HasValue && paymentDto.Date.Value.Date < DateTime.Now.Date.AddMonths(-3))
+                if (createPaymentDto.Date.HasValue && createPaymentDto.Date.Value.Date < DateTime.Now.Date.AddMonths(-3))
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,

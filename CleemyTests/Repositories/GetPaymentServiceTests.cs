@@ -83,7 +83,7 @@ namespace CleemyTests
         {
             Reset();
 
-            PaymentRepository paymentRepository  = CreatePaymentRepository();
+            PaymentRepository paymentRepository = CreatePaymentRepository();
 
             var sortWrapper = new SortWrapper
             {
@@ -98,7 +98,6 @@ namespace CleemyTests
 
         [Fact]
         [Trait("PaymentList.Repository", "Validation")]
-
         public void GetPayments_SortByAMountDesc_Ok()
         {
             Reset();
@@ -153,6 +152,5 @@ namespace CleemyTests
 
             Assert.True(dbpayments.FirstOrDefault().Date == _dates.LastOrDefault());
         }
-
     }
 }

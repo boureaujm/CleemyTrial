@@ -2,8 +2,8 @@
 {
     public enum PaymentNatureEnum
     {
-        Restaurant, 
-        Hostel,
+        Restaurant,
+        Hotel,
         Misc
     }
 }

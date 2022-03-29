@@ -27,7 +27,6 @@ namespace CleemyInfrastructure.Repositories
 
         public Currency GetByCode(string currencyCode)
         {
-
             Guard.IsNotNull(currencyCode, "currencyCode nust have a value");
 
             try
@@ -41,7 +40,6 @@ namespace CleemyInfrastructure.Repositories
                 _logger.LogError("Get Currency", err);
                 return null;
             }
-
         }
     }
 }

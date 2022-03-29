@@ -6,14 +6,11 @@ namespace CleemyCommons.Exceptions
     {
         public UserNotExistException()
         {
-
         }
 
         public UserNotExistException(string message)
             : base(message)
         {
-
         }
     }
-
 }

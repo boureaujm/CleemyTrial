@@ -7,7 +7,6 @@ namespace CleemyInfrastructure
     {
         public ApplicationContext()
         {
-
         }
 
         public ApplicationContext(DbContextOptions options)

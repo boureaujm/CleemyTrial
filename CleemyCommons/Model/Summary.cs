@@ -13,7 +13,8 @@ namespace CleemyCommons.Model
 
         public List<Error> Errors { get; set; }
 
-        public void Add(string scope, string reaseon) {
+        public void Add(string scope, string reaseon)
+        {
             Errors.Add(new Error
             {
                 Scope = scope,

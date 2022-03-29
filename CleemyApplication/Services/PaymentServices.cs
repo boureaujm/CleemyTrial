@@ -2,6 +2,7 @@
 using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
 using CleemyCommons.Tools;
+using CleemyCommons.Types;
 using CleemyInfrastructure.entities;
 using CleemyInfrastructure.Repositories;
 using System.Collections.Generic;
@@ -37,7 +38,6 @@ namespace CleemyApplication.Services
             var payments = _dbPaymentToPaymentAdapter.Convert(dbPayments.ToList());
             return payments;
 
-
             return payments;
         }
 
@@ -47,20 +47,20 @@ namespace CleemyApplication.Services
 
             var user = _userRepository.GetById(newPayment.User.Id);
             if (user is null)
-                throw new UserNotExistException("User does not exist");
+                throw new UserNotExistException(PaymentConstants.CST_ERROR_USER_NOT_EXIST);
 
             var currency = _currencyRepository.GetByCode(newPayment.Currency.Code);
             if (currency is null)
-                throw new CurrencyNotExistException("Currency does not exist");
+                throw new CurrencyNotExistException(PaymentConstants.CST_ERROR_CURRENCY_NOT_EXIST);
 
-            if (currency.Code != newPayment.User.AuthorizedCurrency.Code)
-                throw new CurrencyIncoherenceException("Payment currency and user currency must be the same");
+            if (currency.Code != user.AuthorizedCurrency.Code)
+                throw new CurrencyIncoherenceException(PaymentConstants.CST_ERROR_INCOHERENT_CURRENCY);
 
             var existingPayment = _paymentRepository.CheckIfExists(newPayment);
             if (existingPayment == true)
-                throw new DuplicatePaymentException("Duplicate payment");
+                throw new DuplicatePaymentException(PaymentConstants.CST_ERROR_DUPLICATE_PAYMENT);
 
-            var createdDbPayment  = await _paymentRepository.CreateAsync(newPayment);
+            var createdDbPayment = await _paymentRepository.CreateAsync(newPayment);
 
             var createdPayment = _dbPaymentToPaymentAdapter.Convert(createdDbPayment);
 

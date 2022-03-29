@@ -1,6 +1,5 @@
 ﻿using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
-using CleemyInfrastructure;
 using CleemyInfrastructure.entities;
 using CleemyInfrastructure.entities.Adapter;
 using CleemyInfrastructure.Repositories;
@@ -12,8 +11,8 @@ namespace CleemyInfrastructure
 {
     public static class RegisterInfrastructureExtension
     {
-        public static void RegisterInfrastructure(this IServiceCollection services, IConfiguration configuration) {
-
+        public static void RegisterInfrastructure(this IServiceCollection services, IConfiguration configuration)
+        {
             services.AddDbContext<ApplicationContext>(
                 options =>
                 {

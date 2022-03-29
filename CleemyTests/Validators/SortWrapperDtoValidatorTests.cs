@@ -56,6 +56,5 @@ namespace CleemyTests
 
             Assert.True(errors.Where(e => e.Reason == SortWrapperDtoValidator.CST_MUST_BE_NOT_NULL).Count() == 1);
         }
-
     }
 }

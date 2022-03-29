@@ -29,6 +29,5 @@ namespace CleemyInfrastructure.entities
         [Required]
         [MaxLength(250)]
         public string Comment { get; set; }
-
     }
 }

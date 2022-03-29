@@ -23,7 +23,8 @@ namespace CleemyTests
             _paymentRepository = new Mock<IPaymentRepository>();
         }
 
-        private void Reset() {
+        private void Reset()
+        {
             _userRepository.Reset();
             _currencyRepository.Reset();
             _paymentRepository.Reset();
@@ -43,7 +44,6 @@ namespace CleemyTests
         [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayments_Null_ReturnExceptionAsync()
         {
-
             Reset();
             PaymentServices paymentServices = CreatePaymentService();
 
@@ -54,7 +54,6 @@ namespace CleemyTests
         [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_PaymentValid_ReturnNewPayment()
         {
-
             var user = new User
             {
                 FirstName = "test",
@@ -100,7 +99,6 @@ namespace CleemyTests
         [Trait("PaymentCreate.Service", "Validation")]
         public async Task CreatePayment_InvalidUser_ThrowException()
         {
-
             var user = new User
             {
                 FirstName = "test",
@@ -111,7 +109,6 @@ namespace CleemyTests
                 },
                 Id = 9
             };
-
 
             var currency = new Currency
             {
@@ -152,7 +149,6 @@ namespace CleemyTests
                 },
                 Id = 9
             };
-
 
             var invalidCurrency = new Currency
             {
@@ -195,7 +191,6 @@ namespace CleemyTests
                 Id = 9
             };
 
-
             var incoherentCurrency = new Currency
             {
                 Code = "RUB"
@@ -235,9 +230,8 @@ namespace CleemyTests
                 {
                     Code = "USD"
                 },
-                Id = 9
+                Id = 1
             };
-
 
             var currency = new Currency
             {
@@ -265,7 +259,5 @@ namespace CleemyTests
 
             await Assert.ThrowsAsync<DuplicatePaymentException>(async () => await paymentServices.Create(newPayment));
         }
-
-
     }
 }

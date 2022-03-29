@@ -6,7 +6,6 @@ using System.Linq;
 
 namespace Cleemy.ActionFilters
 {
-
     public class ValidateModelStateAttribute<T> : IActionFilter where T : class
     {
         private readonly IValidator<T> _validator;
@@ -30,7 +29,8 @@ namespace Cleemy.ActionFilters
             var response = new ApiResponse<ErrorsDto>
             {
                 Succeed = false,
-                Result = new ErrorsDto { 
+                Result = new ErrorsDto
+                {
                     Errors = errors
                 }
             };

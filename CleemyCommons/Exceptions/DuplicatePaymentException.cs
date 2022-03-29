@@ -6,14 +6,11 @@ namespace CleemyCommons.Exceptions
     {
         public DuplicatePaymentException()
         {
-
         }
 
         public DuplicatePaymentException(string message)
             : base(message)
         {
-
         }
     }
-
 }

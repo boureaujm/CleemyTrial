@@ -43,10 +43,12 @@ namespace Cleemy.Controllers
 
         [HttpGet]
         [ServiceFilter(typeof(ValidateModelStateAttribute<SortWrapperDto>))]
-        public async Task<ActionResult> GetAsync([FromRoute] int userId, [FromQuery] SortWrapperDto sortWrapperDto)
+        public async Task<ActionResult> GetAsync([FromQuery] int userId, [FromQuery] SortWrapperDto sortWrapperDto)
         {
             try
             {
+                _logger.LogDebug($"Get Payments : userId = {userId}", sortWrapperDto);
+
                 var sortWrapper = _sortWrapperAdapter.Convert(sortWrapperDto);
 
                 var payments = _paymentServices.GetByUserId(userId, sortWrapper);
@@ -54,6 +56,8 @@ namespace Cleemy.Controllers
                     return NotFound<string>(Constants.CST_MESSAGE_NOT_FOUND);
 
                 var paymentsDto = _paymentToPaymentDtoAdapter.Convert(payments.ToList());
+
+                _logger.LogDebug($"Get Payments return : ", paymentsDto);
 
                 return Ok<IEnumerable<PaymentDto>>(paymentsDto);
             }
@@ -99,7 +103,7 @@ namespace Cleemy.Controllers
             }
             catch (DuplicatePaymentException duplicatePaymentEx)
             {
-                return BadRequest<ErrorsDto>(duplicatePaymentEx);
+                return Conflict<ErrorsDto>(duplicatePaymentEx);
                 throw;
             }
             catch (Exception ex)

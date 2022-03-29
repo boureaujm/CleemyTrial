@@ -6,14 +6,11 @@ namespace CleemyCommons.Exceptions
     {
         public CurrencyIncoherenceException()
         {
-
         }
 
         public CurrencyIncoherenceException(string message)
             : base(message)
         {
-
         }
     }
-
 }

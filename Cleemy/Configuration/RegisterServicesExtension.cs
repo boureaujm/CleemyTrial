@@ -5,6 +5,7 @@ using CleemyCommons.Interfaces;
 using CleemyCommons.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System.Linq;
 
 namespace Cleemy.Configuration
@@ -24,7 +25,8 @@ namespace Cleemy.Configuration
             services.AddScoped<IEnumerableAdapter<CreatePaymentDto, Payment>, CreatePaymentDtoToPaymentAdapter>();
             services.AddScoped<IEnumerableAdapter<Payment, PaymentDto>, PaymentToPaymentDtoAdapter>();
             services.AddScoped<IAdapter<SortWrapperDto, SortWrapper>, SortWrapperDtoToSortWrapperAdapter>();
-            
+
+            services.AddLogging(configure => configure.AddConsole());
 
             System.Reflection.Assembly.GetExecutingAssembly()
            .GetTypes()

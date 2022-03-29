@@ -16,6 +16,5 @@ namespace CleemyCommons.Model
         public Currency Currency { get; set; }
 
         public string Comment { get; set; }
-
     }
 }

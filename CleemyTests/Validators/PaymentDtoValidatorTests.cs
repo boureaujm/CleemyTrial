@@ -1,6 +1,6 @@
 using Cleemy.DTO;
 using Cleemy.Model.Validator;
-using System.ComponentModel;
+using CleemyCommons.Types;
 using System.Linq;
 using Xunit;
 
@@ -16,7 +16,7 @@ namespace CleemyTests
         }
 
         [Fact]
-        [Trait("Payment","Validation")]
+        [Trait("Payment", "Validation")]
         public void PaymentDto_FieldNotNull_GenerateErrors_Ok()
         {
             var payment = new CreatePaymentDto
@@ -24,7 +24,7 @@ namespace CleemyTests
                 Amount = null,
                 Comment = null,
                 Currency = null,
-                Date = null,    
+                Date = null,
                 UserId = null,
                 PaymentNature = null
             };
@@ -68,5 +68,42 @@ namespace CleemyTests
             Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_MUST_BE_NOT_NULL).Count() == 1);
         }
 
+        [Fact]
+        [Trait("Payment", "Validation")]
+        public void PaymentDto_Payment_Not_In_Future_GenerateError_Ok()
+        {
+            var newPaymentDto = new CreatePaymentDto
+            {
+                Amount = 100,
+                Comment = "test",
+                Currency = "USD",
+                Date = System.DateTime.Now.AddDays(1),
+                PaymentNature = PaymentNatureEnum.Restaurant.ToString(),
+                UserId = 1
+            };
+
+            var errors = _validator.Validate(newPaymentDto);
+
+            Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_DATE_NOT_IN_FUTURE).Count() == 1);
+        }
+
+        [Fact]
+        [Trait("Payment", "Validation")]
+        public void PaymentDto_Payment_No_More_Three_Month_In_Past_GenerateError_Ok()
+        {
+            var newPaymentDto = new CreatePaymentDto
+            {
+                Amount = 100,
+                Comment = "test",
+                Currency = "USD",
+                Date = System.DateTime.Now.AddMonths(-4),
+                PaymentNature = PaymentNatureEnum.Restaurant.ToString(),
+                UserId = 1
+            };
+
+            var errors = _validator.Validate(newPaymentDto);
+
+            Assert.True(errors.Where(e => e.Reason == PaymentDtoValidator.CST_PAYEMENT_DATE_NOT_IN_PAST_MORE_THAN_3MONTHS).Count() == 1);
+        }
     }
 }

@@ -9,6 +9,5 @@ namespace Cleemy.DTO
 
         [FromQuery(Name = "direction")]
         public string Direction { get; set; }
-
     }
 }

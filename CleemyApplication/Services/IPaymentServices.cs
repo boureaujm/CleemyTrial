@@ -7,6 +7,7 @@ namespace CleemyApplication.Services
     public interface IPaymentServices
     {
         Task<Payment> Create(Payment newPayment);
+
         IEnumerable<Payment> GetByUserId(int userId, SortWrapper sortWrapper);
     }
 }

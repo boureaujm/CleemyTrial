@@ -1,7 +1,6 @@
 using Cleemy.Controllers;
 using Cleemy.DTO;
 using Cleemy.Model.Adapter;
-using Cleemy.Model.Validator;
 using CleemyApplication.Services;
 using CleemyCommons.Model;
 using CleemyCommons.Types;
@@ -15,7 +14,7 @@ using Xunit;
 
 namespace CleemyTests
 {
-    public class PaymentsControllerTests
+    public class GetPaymentsControllerTests
     {
         [Fact]
         [Trait("PaymentList", "Validation")]
@@ -23,7 +22,7 @@ namespace CleemyTests
         {
             var paymentService = new Mock<IPaymentServices>();
             var logger = new Mock<ILogger<PaymentsController>>();
-            var paymentToPaymentDtoAdapter  = new PaymentToPaymentDtoAdapter();
+            var paymentToPaymentDtoAdapter = new PaymentToPaymentDtoAdapter();
             var paymentDtoToPaymentAdapter = new CreatePaymentDtoToPaymentAdapter();
             var sortAdapter = new SortWrapperDtoToSortWrapperAdapter();
             var sortWrapper = new SortWrapper
@@ -40,7 +39,7 @@ namespace CleemyTests
 
             paymentService.Setup(x => x.GetByUserId(It.IsAny<int>(), sortWrapper)).Returns(new List<Payment>());
 
-            var controller = new PaymentsController(logger.Object, paymentService.Object, 
+            var controller = new PaymentsController(logger.Object, paymentService.Object,
                 paymentDtoToPaymentAdapter, paymentToPaymentDtoAdapter, sortAdapter);
 
             ActionResult<IEnumerable<CreatePaymentDto>> result = await controller.GetAsync(9, sortWrapperDto);
@@ -70,7 +69,7 @@ namespace CleemyTests
                 Direction = CommonsConstants.CST_ASCENDING
             };
 
-            paymentService.Setup(service => service.GetByUserId(It.IsAny<int>(), It.IsAny<SortWrapper>())).Returns((new List<Payment>{ new Payment() }).AsEnumerable());
+            paymentService.Setup(service => service.GetByUserId(It.IsAny<int>(), It.IsAny<SortWrapper>())).Returns((new List<Payment> { new Payment() }).AsEnumerable());
 
             var controller = new PaymentsController(logger.Object, paymentService.Object,
               paymentDtoToPaymentAdapter, paymentToPaymentDtoAdapter, sortAdapter);

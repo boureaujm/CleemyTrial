@@ -69,7 +69,7 @@ namespace CleemyTests
         public void GetPayments_NotFoundUserId_ReturnEmptyAsync()
         {
             Reset();
-            
+
             _paymentRepository.Setup(x => x.GetByUser(-1, _sortWrapper)).Returns(new List<DbPayment>().AsEnumerable());
 
             PaymentServices paymentServices = CreatePaymentService();

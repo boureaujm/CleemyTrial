@@ -5,8 +5,8 @@ namespace CleemyApplication
 {
     public static class RegisterApplicationExtension
     {
-        public static void RegisterApplication(this IServiceCollection services) {
-
+        public static void RegisterApplication(this IServiceCollection services)
+        {
             services.AddScoped<IPaymentServices, PaymentServices>();
         }
     }

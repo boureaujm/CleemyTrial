@@ -6,14 +6,11 @@ namespace CleemyCommons.Exceptions
     {
         public CurrencyNotExistException()
         {
-
         }
 
         public CurrencyNotExistException(string message)
             : base(message)
         {
-
         }
     }
-
 }
