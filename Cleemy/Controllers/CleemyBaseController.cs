@@ -1,5 +1,5 @@
-﻿using Cleemy.Model;
-using CleemyCommons.Model;
+﻿using Cleemy.DTO;
+using Cleemy.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace Cleemy.Controllers
 {
+    /// <summary>
+    /// Provide base functions for controller
+    /// </summary>
     public class CleemyBaseController : ControllerBase
     {
         private static ApiResponse<T> CreateApiResponse<T>(T data, bool succeed = true)

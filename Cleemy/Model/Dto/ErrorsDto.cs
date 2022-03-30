@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CleemyCommons.Model
+namespace Cleemy.DTO
 {
     public class ErrorsDto
     {

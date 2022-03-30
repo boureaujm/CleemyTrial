@@ -9,6 +9,9 @@ using System.Linq;
 
 namespace Cleemy.Model.Validator
 {
+    /// <summary>
+    /// CreatePaymentDto validator
+    /// </summary>
     public class PaymentDtoValidator : IValidator<CreatePaymentDto>
     {
         public const string CST_MUST_BE_NOT_NULL = "Must be not null";

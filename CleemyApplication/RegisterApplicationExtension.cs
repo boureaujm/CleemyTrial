@@ -1,4 +1,5 @@
 ﻿using CleemyApplication.Services;
+using CleemyApplication.Services.internals;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleemyApplication

@@ -1,4 +1,4 @@
-﻿namespace CleemyCommons.Model
+﻿namespace Cleemy.DTO
 {
     public class ErrorItemDto
     {

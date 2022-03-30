@@ -1,4 +1,5 @@
-﻿using Cleemy.Model;
+﻿using Cleemy.DTO;
+using Cleemy.Model;
 using CleemyCommons.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -6,6 +7,10 @@ using System.Linq;
 
 namespace Cleemy.ActionFilters
 {
+    /// <summary>
+    /// A solution for emulate fluentValidation validation
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ValidateModelStateAttribute<T> : IActionFilter where T : class
     {
         private readonly IValidator<T> _validator;

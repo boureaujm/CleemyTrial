@@ -3,6 +3,7 @@ using CleemyCommons.Model;
 using CleemyInfrastructure.entities;
 using CleemyInfrastructure.entities.Adapter;
 using CleemyInfrastructure.Repositories;
+using CleemyInfrastructure.Repositories.internals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

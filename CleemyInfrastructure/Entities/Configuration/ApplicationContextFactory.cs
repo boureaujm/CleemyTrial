@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleemyInfrastructure.Entities.Configuration
 {
+    /// <summary>
+    /// Only used for Code first migrations
+    /// </summary>
     public class ApplicationContextFactory : IDesignTimeDbContextFactory<ApplicationContext>
     {
         public ApplicationContext CreateDbContext(string[] args)

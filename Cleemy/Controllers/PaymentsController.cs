@@ -75,6 +75,8 @@ namespace Cleemy.Controllers
         {
             try
             {
+                _logger.LogDebug($"Add Payment", paymentDto);
+
                 var payment = _paymentDtoTopaymentAdapter.Convert(paymentDto);
 
                 var newPayment = await _paymentServices.Create(payment);
@@ -83,6 +85,8 @@ namespace Cleemy.Controllers
                     return NotFound<string>(Constants.CST_MESSAGE_NOT_FOUND);
 
                 var newPaymentDto = _paymentToPaymentDtoAdapter.Convert(newPayment);
+
+                _logger.LogDebug($"Add Payment return : ", newPaymentDto);
 
                 return Ok<PaymentDto>(newPaymentDto);
             }

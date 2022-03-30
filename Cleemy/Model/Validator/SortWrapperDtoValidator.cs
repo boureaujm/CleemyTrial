@@ -1,11 +1,13 @@
 ﻿using Cleemy.ActionFilters;
 using Cleemy.DTO;
-using CleemyCommons.Model;
 using CleemyCommons.Types;
 using System.Collections.Generic;
 
 namespace Cleemy.Model.Validator
 {
+    /// <summary>
+    /// SortWrapperDto validator
+    /// </summary>
     public class SortWrapperDtoValidator : IValidator<SortWrapperDto>
     {
         private const string CST_SORT = "Sort";
