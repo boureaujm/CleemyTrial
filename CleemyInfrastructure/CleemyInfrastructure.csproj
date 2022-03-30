@@ -22,6 +22,15 @@
     <ProjectReference Include="..\CleemyCommons\CleemyCommons.csproj" />
   </ItemGroup>
 
+<ItemGroup>
+	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+		<_Parameter1>CleemyTests</_Parameter1>
+	</AssemblyAttribute>
+	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+		<_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+	</AssemblyAttribute>
+</ItemGroup>	
+	
   <ItemGroup>
     <Folder Include="Migrations\" />
   </ItemGroup>

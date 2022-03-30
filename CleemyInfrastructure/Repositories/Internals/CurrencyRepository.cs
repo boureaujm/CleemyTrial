@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
-namespace CleemyInfrastructure.Repositories
+namespace CleemyInfrastructure.Repositories.internals
 {
-    public class CurrencyRepository : ICurrencyRepository
+    internal class CurrencyRepository : ICurrencyRepository
     {
         private readonly IEnumerableAdapter<DbCurrency, Currency> _dbCurrencyToCurrencyAdapter;
         private ApplicationContext _context;

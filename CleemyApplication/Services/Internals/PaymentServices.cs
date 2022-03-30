@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CleemyApplication.Services
+namespace CleemyApplication.Services.internals
 {
-    public class PaymentServices : IPaymentServices
+    internal class PaymentServices : IPaymentServices
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IUserRepository _userRepository;

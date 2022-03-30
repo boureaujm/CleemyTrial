@@ -6,9 +6,9 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 
-namespace CleemyInfrastructure.Repositories
+namespace CleemyInfrastructure.Repositories.internals
 {
-    public class UserRepository : IUserRepository
+    internal class UserRepository : IUserRepository
     {
         private readonly IEnumerableAdapter<DbUser, User> _dbUserToUserAdapter;
         private ApplicationContext _context;

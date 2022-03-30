@@ -10,9 +10,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CleemyInfrastructure.Repositories
+namespace CleemyInfrastructure.Repositories.internals
 {
-    public class PaymentRepository : IPaymentRepository
+    internal class PaymentRepository : IPaymentRepository
     {
         private readonly IEnumerableAdapter<Payment, DbPayment> _paymentToDbPaymentAdapter;
         private ApplicationContext _context;
