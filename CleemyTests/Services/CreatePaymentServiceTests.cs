@@ -1,6 +1,8 @@
 using CleemyApplication.Services;
+using CleemyApplication.Services.internals;
 using CleemyCommons.Exceptions;
 using CleemyCommons.Model;
+using CleemyCommons.Types;
 using CleemyInfrastructure.entities.Adapter;
 using CleemyInfrastructure.Repositories;
 using Moq;
@@ -85,7 +87,24 @@ namespace CleemyTests
 
             _userRepository.Setup(x => x.GetById(9)).Returns(user);
             _currencyRepository.Setup(x => x.GetByCode("USD")).Returns(currency);
-            _paymentRepository.Setup(x => x.CreateAsync(newPayment)).Returns(Task.FromResult(new CleemyInfrastructure.entities.DbPayment { Id = 1 }));
+            _paymentRepository.Setup(x => x.CreateAsync(newPayment)).Returns(Task.FromResult(
+                new CleemyInfrastructure.entities.DbPayment()
+                {
+                    Id = 1,
+                    Amount = 1000.75,
+                    Date = DateTime.Now,
+                    User = new CleemyInfrastructure.entities.DbUser { Id = 1 ,
+                    FirstName = "test",
+                    LastName = "test"},
+                    Currency = new CleemyInfrastructure.entities.DbCurrency
+                    {
+                        Code = "USD",
+                        Label = "US Dollar"
+                    },
+                    Comment = "mandatory",
+                    PaymentNature = PaymentNatureEnum.Misc
+                }
+             ));
 
             PaymentServices paymentServices = CreatePaymentService();
 
@@ -251,7 +270,7 @@ namespace CleemyTests
 
             Reset();
 
-            _userRepository.Setup(x => x.GetById(9)).Returns(user);
+            _userRepository.Setup(x => x.GetById(1)).Returns(user);
             _currencyRepository.Setup(x => x.GetByCode("USD")).Returns(currency);
             _paymentRepository.Setup(x => x.CheckIfExists(newPayment)).Returns(true);
 

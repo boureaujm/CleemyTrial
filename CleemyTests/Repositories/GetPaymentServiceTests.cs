@@ -4,6 +4,7 @@ using CleemyInfrastructure;
 using CleemyInfrastructure.entities;
 using CleemyInfrastructure.entities.Adapter;
 using CleemyInfrastructure.Repositories;
+using CleemyInfrastructure.Repositories.internals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
