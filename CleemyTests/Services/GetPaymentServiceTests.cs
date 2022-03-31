@@ -40,10 +40,10 @@ namespace CleemyTests
             _paymentRepository.Reset();
         }
 
-        private PaymentServices CreatePaymentService()
+        private PaymentService CreatePaymentService()
         {
             var adatpter = new DbPayment2PaymentAdapter();
-            return new PaymentServices(
+            return new PaymentService(
                 _paymentRepository.Object,
                 _userRepository.Object,
                 _currencyRepository.Object,
@@ -60,7 +60,7 @@ namespace CleemyTests
 
             _paymentRepository.Setup(x => x.GetByUser(-1, _sortWrapper)).Returns(new List<DbPayment>().AsEnumerable());
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             Assert.Throws<ArgumentException>(() => paymentServices.GetByUserId(userId: userId, _sortWrapper));
         }
@@ -73,7 +73,7 @@ namespace CleemyTests
 
             _paymentRepository.Setup(x => x.GetByUser(-1, _sortWrapper)).Returns(new List<DbPayment>().AsEnumerable());
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             var payments = paymentServices.GetByUserId(99, _sortWrapper);
 

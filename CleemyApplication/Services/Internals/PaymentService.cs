@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace CleemyApplication.Services.internals
 {
-    internal class PaymentServices : IPaymentServices
+    public class PaymentService : IPaymentService
     {
         private readonly IPaymentRepository _paymentRepository;
         private readonly IUserRepository _userRepository;
         private readonly ICurrencyRepository _currencyRepository;
         private readonly IEnumerableAdapter<DbPayment, Payment> _dbPaymentToPaymentAdapter;
 
-        public PaymentServices(
+        public PaymentService(
             IPaymentRepository paymentRepository,
             IUserRepository userRepository,
             ICurrencyRepository currencyRepository,

@@ -22,13 +22,13 @@ namespace Cleemy.Controllers
     public class PaymentsController : CleemyBaseController
     {
         private readonly ILogger<PaymentsController> _logger;
-        private readonly IPaymentServices _paymentServices;
+        private readonly IPaymentService _paymentServices;
         private readonly IEnumerableAdapter<CreatePaymentDto, Payment> _paymentDtoTopaymentAdapter;
         private readonly IEnumerableAdapter<Payment, PaymentDto> _paymentToPaymentDtoAdapter;
         private readonly IAdapter<SortWrapperDto, SortWrapper> _sortWrapperAdapter;
 
         public PaymentsController(ILogger<PaymentsController> logger,
-            IPaymentServices paymentServices,
+            IPaymentService paymentServices,
             IEnumerableAdapter<CreatePaymentDto, Payment> paymentDtoTopaymentAdapter,
             IEnumerableAdapter<Payment, PaymentDto> paymentToPaymentDtoAdapter,
             IAdapter<SortWrapperDto, SortWrapper> sortWrapperAdapter

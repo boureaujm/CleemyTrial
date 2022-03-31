@@ -32,10 +32,10 @@ namespace CleemyTests
             _paymentRepository.Reset();
         }
 
-        private PaymentServices CreatePaymentService()
+        private PaymentService CreatePaymentService()
         {
             var adatpter = new DbPayment2PaymentAdapter();
-            return new PaymentServices(
+            return new PaymentService(
                 _paymentRepository.Object,
                 _userRepository.Object,
                 _currencyRepository.Object,
@@ -47,7 +47,7 @@ namespace CleemyTests
         public async Task CreatePayments_Null_ReturnExceptionAsync()
         {
             Reset();
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             await Assert.ThrowsAsync<ArgumentNullException>(async () => await paymentServices.Create(null));
         }
@@ -106,7 +106,7 @@ namespace CleemyTests
                 }
              ));
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             var created = await paymentServices.Create(newPayment);
 
@@ -149,7 +149,7 @@ namespace CleemyTests
 
             _userRepository.Setup(x => x.GetById(9)).Returns((User)null);
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             await Assert.ThrowsAsync<UserNotExistException>(async () => await paymentServices.Create(newPayment));
         }
@@ -190,7 +190,7 @@ namespace CleemyTests
             _userRepository.Setup(x => x.GetById(9)).Returns(user);
             _currencyRepository.Setup(x => x.GetByCode("FFR")).Returns((Currency)null);
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             await Assert.ThrowsAsync<CurrencyNotExistException>(async () => await paymentServices.Create(newPayment));
         }
@@ -232,7 +232,7 @@ namespace CleemyTests
             _currencyRepository.Setup(x => x.GetByCode("RUB")).Returns(incoherentCurrency);
             _paymentRepository.Setup(x => x.CreateAsync(newPayment)).Returns(Task.FromResult(new CleemyInfrastructure.entities.DbPayment { Id = 1 }));
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             await Assert.ThrowsAsync<CurrencyIncoherenceException>(async () => await paymentServices.Create(newPayment));
         }
@@ -274,7 +274,7 @@ namespace CleemyTests
             _currencyRepository.Setup(x => x.GetByCode("USD")).Returns(currency);
             _paymentRepository.Setup(x => x.CheckIfExists(newPayment)).Returns(true);
 
-            PaymentServices paymentServices = CreatePaymentService();
+            PaymentService paymentServices = CreatePaymentService();
 
             await Assert.ThrowsAsync<DuplicatePaymentException>(async () => await paymentServices.Create(newPayment));
         }

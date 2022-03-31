@@ -16,7 +16,7 @@ namespace CleemyTests
 {
     public class CreatePaymentsControllerTests
     {
-        private readonly Mock<IPaymentServices> _paymentService;
+        private readonly Mock<IPaymentService> _paymentService;
         private readonly Mock<ILogger<PaymentsController>> _logger;
         private readonly PaymentToPaymentDtoAdapter _paymentToPaymentDtoAdapter;
         private readonly CreatePaymentDtoToPaymentAdapter _paymentDtoToPaymentAdapter;
@@ -24,7 +24,7 @@ namespace CleemyTests
 
         public CreatePaymentsControllerTests()
         {
-            _paymentService = new Mock<IPaymentServices>();
+            _paymentService = new Mock<IPaymentService>();
             _logger = new Mock<ILogger<PaymentsController>>();
             _paymentToPaymentDtoAdapter = new PaymentToPaymentDtoAdapter();
             _paymentDtoToPaymentAdapter = new CreatePaymentDtoToPaymentAdapter();

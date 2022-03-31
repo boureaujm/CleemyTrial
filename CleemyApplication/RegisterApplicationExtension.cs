@@ -8,7 +8,7 @@ namespace CleemyApplication
     {
         public static void RegisterApplication(this IServiceCollection services)
         {
-            services.AddScoped<IPaymentServices, PaymentServices>();
+            services.AddScoped<IPaymentService, PaymentService>();
         }
     }
 }

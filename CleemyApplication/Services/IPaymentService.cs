@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace CleemyApplication.Services
 {
-    public interface IPaymentServices
+    public interface IPaymentService
     {
         Task<Payment> Create(Payment newPayment);
 

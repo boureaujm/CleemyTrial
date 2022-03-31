@@ -20,7 +20,7 @@ namespace CleemyTests
         [Trait("PaymentList", "Validation")]
         public async Task GetPayments_GetPayment_UnknowUser_Return_Not_Found()
         {
-            var paymentService = new Mock<IPaymentServices>();
+            var paymentService = new Mock<IPaymentService>();
             var logger = new Mock<ILogger<PaymentsController>>();
             var paymentToPaymentDtoAdapter = new PaymentToPaymentDtoAdapter();
             var paymentDtoToPaymentAdapter = new CreatePaymentDtoToPaymentAdapter();
@@ -51,7 +51,7 @@ namespace CleemyTests
         [Trait("PaymentList", "Validation")]
         public async Task GetPayments_GetPayment_Return_Ok()
         {
-            var paymentService = new Mock<IPaymentServices>();
+            var paymentService = new Mock<IPaymentService>();
             var logger = new Mock<ILogger<PaymentsController>>();
             var paymentToPaymentDtoAdapter = new PaymentToPaymentDtoAdapter();
             var paymentDtoToPaymentAdapter = new CreatePaymentDtoToPaymentAdapter();
