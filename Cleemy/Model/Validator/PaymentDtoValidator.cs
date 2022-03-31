@@ -41,7 +41,7 @@ namespace Cleemy.Model.Validator
             }
             else
             {
-                if (createPaymentDto.UserId is null)
+                if (createPaymentDto.UserId is null || createPaymentDto.UserId == 0)
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_USER,
@@ -55,7 +55,7 @@ namespace Cleemy.Model.Validator
                         Reason = CST_PAYEMENT_DATE_REQUIRED
                     });
 
-                if (createPaymentDto.PaymentNature is null)
+                if (string.IsNullOrEmpty(createPaymentDto.PaymentNature))
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
@@ -73,7 +73,7 @@ namespace Cleemy.Model.Validator
                     }
                 }
 
-                if (createPaymentDto.Amount is null)
+                if (createPaymentDto.Amount is null || createPaymentDto.Amount == 0.0)
                 {
                     errors.Add(new ErrorItemDto
                     {
@@ -82,14 +82,14 @@ namespace Cleemy.Model.Validator
                     });
                 }
 
-                if (createPaymentDto.Currency is null)
+                if (string.IsNullOrEmpty(createPaymentDto.Currency))
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,
                         Reason = CST_PAYEMENT_CURRENCY_REQUIRED
                     });
 
-                if (createPaymentDto.Comment is null)
+                if (string.IsNullOrEmpty(createPaymentDto.Comment))
                     errors.Add(new ErrorItemDto
                     {
                         Scope = Constants.CST_PAYMENT,

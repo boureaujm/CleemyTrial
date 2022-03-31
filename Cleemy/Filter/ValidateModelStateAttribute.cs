@@ -1,8 +1,10 @@
-﻿using Cleemy.DTO;
+﻿using Cleemy.Configuration;
+using Cleemy.DTO;
 using Cleemy.Model;
 using CleemyCommons.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Cleemy.ActionFilters
@@ -26,10 +28,18 @@ namespace Cleemy.ActionFilters
 
             var dto = (T)param.Value;
 
-            if (dto is null)
-                return;
-
-            var errors = _validator.Validate(dto);
+            IEnumerable<ErrorItemDto> errors;
+            if (dto != null)
+            {
+                errors = _validator.Validate(dto);
+            }
+            else
+            {
+                errors = new List<ErrorItemDto> { new ErrorItemDto {
+                    Reason = Constants.CST_MESSAGE_INVALID_FORMAT
+                    } 
+                };
+            }
 
             var response = new ApiResponse<ErrorsDto>
             {

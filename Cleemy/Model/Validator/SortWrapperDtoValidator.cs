@@ -34,32 +34,40 @@ namespace Cleemy.Model.Validator
             else
             {
                 if (sortWrapperDto.Field == null)
+                {
                     errors.Add(new ErrorItemDto
                     {
                         Scope = CST_SORT,
                         Reason = CST_SORT_FIELD_REQUIRED
                     });
+                }
+                else
+                {
+                    if (sortWrapperDto.Field != PaymentConstants.CST_AMOUNT && sortWrapperDto.Field != PaymentConstants.CST_DATE)
+                        errors.Add(new ErrorItemDto
+                        {
+                            Scope = CST_SORT,
+                            Reason = CST_SORT_INVALID_FIELD_NAME
+                        });
+                }
 
                 if (sortWrapperDto.Direction == null)
+                {
                     errors.Add(new ErrorItemDto
                     {
                         Scope = CST_SORT,
                         Reason = CST_SORT_DIRECTION_REQUIRED
                     });
-
-                if (sortWrapperDto.Field != PaymentConstants.CST_AMOUNT && sortWrapperDto.Field != PaymentConstants.CST_DATE)
-                    errors.Add(new ErrorItemDto
-                    {
-                        Scope = CST_SORT,
-                        Reason = CST_SORT_INVALID_FIELD_NAME
-                    });
-
-                if (sortWrapperDto.Direction != CommonsConstants.CST_DESCENDING && sortWrapperDto.Direction != CommonsConstants.CST_ASCENDING)
-                    errors.Add(new ErrorItemDto
-                    {
-                        Scope = CST_SORT,
-                        Reason = CST_SORT_INVALID_DIRECTION_NAME
-                    });
+                }
+                else
+                {
+                    if (sortWrapperDto.Direction != CommonsConstants.CST_DESCENDING && sortWrapperDto.Direction != CommonsConstants.CST_ASCENDING)
+                        errors.Add(new ErrorItemDto
+                        {
+                            Scope = CST_SORT,
+                            Reason = CST_SORT_INVALID_DIRECTION_NAME
+                        });
+                }
             }
 
             return errors;
