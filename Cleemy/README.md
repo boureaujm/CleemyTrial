@@ -38,6 +38,8 @@ préfère être plus configurable (afin de prévoir les localization des chaines de 
 
 Même si non demandé j'ai limiter la taille des champs nom, prénom et commentaires (en base)
 
+la conversion des objets utilise un pattern adapter
+
 + Architecture
 ******************************************************************
 

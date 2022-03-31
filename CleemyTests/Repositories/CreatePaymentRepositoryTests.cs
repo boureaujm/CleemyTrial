@@ -3,13 +3,11 @@ using CleemyCommons.Types;
 using CleemyInfrastructure;
 using CleemyInfrastructure.entities;
 using CleemyInfrastructure.entities.Adapter;
-using CleemyInfrastructure.Repositories;
 using CleemyInfrastructure.Repositories.internals;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -153,6 +151,5 @@ namespace CleemyTests
 
             Assert.True(dbPayment.Id != 0);
         }
-
     }
 }

@@ -1,4 +1,3 @@
-using CleemyApplication.Services;
 using CleemyApplication.Services.internals;
 using CleemyCommons.Exceptions;
 using CleemyCommons.Model;
@@ -93,9 +92,12 @@ namespace CleemyTests
                     Id = 1,
                     Amount = 1000.75,
                     Date = DateTime.Now,
-                    User = new CleemyInfrastructure.entities.DbUser { Id = 1 ,
-                    FirstName = "test",
-                    LastName = "test"},
+                    User = new CleemyInfrastructure.entities.DbUser
+                    {
+                        Id = 1,
+                        FirstName = "test",
+                        LastName = "test"
+                    },
                     Currency = new CleemyInfrastructure.entities.DbCurrency
                     {
                         Code = "USD",

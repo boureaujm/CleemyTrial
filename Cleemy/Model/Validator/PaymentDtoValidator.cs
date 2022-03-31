@@ -1,7 +1,6 @@
 ﻿using Cleemy.ActionFilters;
 using Cleemy.Configuration;
 using Cleemy.DTO;
-using CleemyCommons.Model;
 using CleemyCommons.Types;
 using System;
 using System.Collections.Generic;

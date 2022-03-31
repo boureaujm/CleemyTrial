@@ -1,7 +1,6 @@
 ﻿using Cleemy.Configuration;
 using Cleemy.DTO;
 using Cleemy.Model;
-using CleemyCommons.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Collections.Generic;
@@ -37,7 +36,7 @@ namespace Cleemy.ActionFilters
             {
                 errors = new List<ErrorItemDto> { new ErrorItemDto {
                     Reason = Constants.CST_MESSAGE_INVALID_FORMAT
-                    } 
+                    }
                 };
             }
 
